@@ -6,6 +6,8 @@ import SignIn from "../containers/signin/SignIn";
 import Products from "../containers/products/Products";
 import Footer from "../containers/footer/Footer";
 import ProductDetail from "../containers/productDetail.jsx/ProductDetail";
+import ClothProducts from "../containers/cloths/Clothproducts";
+import ElectronicsProducts from "../containers/electronics/ElectronicsProducts";
 function RouterComponent() {
   return (
     <Router>
@@ -16,6 +18,8 @@ function RouterComponent() {
         <Route path="/signin" element={<SignIn />} />
         <Route path="/products" element={<Products />} />
         <Route path="/productDetails/:id" element={<ProductDetail />} />
+        <Route path="/clothproducts" element={<ClothProducts />} />
+        <Route path="/electonicproducts" element={<ElectronicsProducts />} />
       </Routes>
       <Footer />
     </Router>

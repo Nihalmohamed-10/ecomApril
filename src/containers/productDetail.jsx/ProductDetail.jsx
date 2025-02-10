@@ -9,7 +9,7 @@ function ProductDetail() {
 
   useEffect(() => {
     axios
-      .get("https://react-shop-backend.liara.run/products/")
+      .get("https://api.escuelajs.co/api/v1/products/")
       .then((res) => {
         const product = res.data.find((item) => item.id === Number(id));
         if (product) {

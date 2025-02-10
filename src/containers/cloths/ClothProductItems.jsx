@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-function ProductItems() {
+function ClothProductItems() {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
@@ -13,53 +13,55 @@ function ProductItems() {
   }, []);
 
   return (
-    <div className="grid grid-cols-1 gap-6 p-5 w-[350px] mx-auto md:w-10/12 md:grid-cols-2 lg:w-[72%] lg:mx-0 xl:grid-cols-3 xl:w-[80%] ">
-      {products.map((product) => (
-        <div
-          key={product.id}
-          className="flex flex-col gap-5 border border-[#999999]  pt-6 pl-6 pr-6 pb-6 rounded-lg "
-        >
-          <Link to={`/productDetails/${product.id}`}>
-            <div className="w-full h-77  ">
-              <img
-                src={product.images[0]}
-                alt={product.title}
-                className="w-full h-full object-cover rounded-lg"
-              />
-            </div>
-          </Link>
+    <div className="grid grid-cols-1 gap-6 p-5 w-[350px] mx-auto md:w-10/12 md:grid-cols-2 lg:w-[72%] lg:mx-0 xl:grid-cols-3 xl:w-[80%]">
+      {products
+        .filter((product) => product.category.name === "Change") 
+        .map((product) => (
+          <div
+            key={product.id}
+            className="flex flex-col gap-5 border border-[#999999] pt-6 pl-6 pr-6 pb-6 rounded-lg"
+          >
+            <Link to={`/productDetails/${product.id}`}>
+              <div className="w-full h-77">
+                <img
+                  src={product.images[0]} 
+                  alt={product.title}
+                  className="w-full h-full object-cover rounded-lg"
+                />
+              </div>
+            </Link>
 
-          <p className="text-xl font-semibold mt-3">{product.title}</p>
-          <div className="flex gap-1">
-            <p className="text-xs text-gray-500">
-              {product.description.substring(0, 30)}...
-            </p>
-            <a className="text-xs" href="/prodcutDetails">
-              Read more
-            </a>
-          </div>
-
-          <div className=" text-sm font-bold text-gray-700 bg-[#e5e7eb] pt-2 pb-2 pl-3 pr-3 w-fit border rounded-2xl">
-            <p className="text-xs">{product.category.name}</p>
-          </div>
-
-          <div className="flex justify-between items-center mt-3">
-            <div>
-              <p className="text-sm ">Price</p>
-              <p className="text-xl font-semibold ">${product.price}</p>
+            <p className="text-xl font-semibold mt-3">{product.title}</p>
+            <div className="flex gap-1">
+              <p className="text-xs text-gray-500">
+                {product.description.substring(0, 30)}...
+              </p>
+              <a className="text-xs" href="/productDetails">
+                Read more
+              </a>
             </div>
 
-            <button className="bg-[#703BF7] text-white px-4 py-1 rounded">
-              Add to Cart
-            </button>
+            <div className="text-sm font-bold text-gray-700 bg-[#e5e7eb] pt-2 pb-2 pl-3 pr-3 w-fit border rounded-2xl">
+              <p className="text-xs">{product.category.name}</p> 
+            </div>
+
+            <div className="flex justify-between items-center mt-3">
+              <div>
+                <p className="text-sm">Price</p>
+                <p className="text-xl font-semibold">${product.price}</p>
+              </div>
+
+              <button className="bg-[#703BF7] text-white px-4 py-1 rounded">
+                Add to Cart
+              </button>
+            </div>
           </div>
-        </div>
-      ))}
+        ))}
     </div>
   );
 }
 
-export default ProductItems;
+export default ClothProductItems;
 
 // import axios from "axios";
 
