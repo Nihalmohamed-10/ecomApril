@@ -1,6 +1,5 @@
 import React from "react";
 import SearchBar from "../products/SearchBar";
-import ClothProductItems from "./ClothProductItems";
 import Catogory from "../products/Catogory";
 import ProductItems from "../products/ProductItems";
 
