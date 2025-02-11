@@ -170,7 +170,7 @@ function Navbar() {
             <span className="text-[14px] font-bold">Sign Up</span>
           </Link>
           <div className="hidden xl:flex border p-2 rounded-lg">
-            <LightModeIcon />
+            <LightModeIcon sx={{color: "#703BF7"}}/>
           </div>
           <div className="hidden xl:flex border p-2 rounded-lg">
             <GitHubIcon />
