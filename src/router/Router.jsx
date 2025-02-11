@@ -20,6 +20,7 @@ function RouterComponent() {
         <Route path="/productDetails/:id" element={<ProductDetail />} />
         <Route path="/clothproducts" element={<ClothProducts />} />
         <Route path="/electonicproducts" element={<ElectronicsProducts />} />
+        
       </Routes>
       <Footer />
     </Router>
