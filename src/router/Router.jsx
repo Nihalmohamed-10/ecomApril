@@ -6,7 +6,7 @@ import SignIn from "../containers/signin/SignIn";
 import Products from "../containers/products/Products";
 import Footer from "../containers/footer/Footer";
 import ProductDetail from "../containers/productDetail.jsx/ProductDetail";
-import ClothProducts from "../containers/cloths/Clothproducts";
+import ClothProducts from  "../containers/cloths/ClothProducts"
 import ElectronicsProducts from "../containers/electronics/ElectronicsProducts";
 function RouterComponent() {
   return (
