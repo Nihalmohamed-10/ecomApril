@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import PlaylistAddIcon from "@mui/icons-material/PlaylistAdd";
 
-function Catogory() {
+function Category() {
   return (
     <div className="mt-5 w-[90%] mx-auto flex flex-col gap-4 border border-[#999999] rounded-lg pb-3 lg:w-[200px] 2xl:w-[220px]">
       <div className="pl-3 flex items-center">
@@ -46,4 +46,4 @@ function Catogory() {
   );
 }
 
-export default Catogory;
+export default Category;

@@ -1,5 +1,5 @@
 import React from 'react'
-import Catogory from '../products/Catogory'
+import Category from '../products/Category'
 import SearchBar from '../products/SearchBar'
 import ProductItems from '../products/ProductItems'
 
@@ -13,7 +13,7 @@ function ElectronicsProducts() {
           filterIt={(product) => product.category.name==="Electronicskhgvkjh"}
           />
         <div>
-            <Catogory/>
+            <Category/>
         </div>
       </div>
     </div>

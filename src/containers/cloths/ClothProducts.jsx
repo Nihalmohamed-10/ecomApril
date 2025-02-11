@@ -1,6 +1,6 @@
 import React from "react";
 import SearchBar from "../products/SearchBar";
-import Catogory from "../products/Catogory";
+import Category from "../products/Category";
 import ProductItems from "../products/ProductItems";
 
 function ClothProducts() {
@@ -14,7 +14,7 @@ function ClothProducts() {
           filterIt={(product) => product.category.name === "Shoes"}
         />
         <div>
-          <Catogory />
+          <Category />
         </div>
       </div>
     </div>
