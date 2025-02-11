@@ -24,7 +24,7 @@ function ProductItems({ filterIt }) {
   const filteredProducts = products.filter(filterIt);
 
   return (
-    <div className="grid grid-cols-1 gap-6 p-5 w-[350px] mx-auto md:w-10/12 md:grid-cols-2 lg:w-[72%] lg:mx-0 xl:grid-cols-3 xl:w-[80%]">
+    <div className="grid grid-cols-1 gap-6 p-5 w-full mx-auto md:w-10/12 md:grid-cols-2 lg:w-[72%] lg:mx-0 xl:grid-cols-3 xl:w-[80%]">
       {loading ? (
         <div className="flex justify-center items-center w-full ">
           <LoadingSpinner />
