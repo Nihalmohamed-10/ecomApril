@@ -32,7 +32,9 @@ function ProductItems({ filterIt }) {
       ) : filteredProducts.length === 0 ? (
         <div className="flex justify-center items-center w-full ">
           <img src={sorry} alt="img" />
+          
         </div>
+        
       ) : (
         filteredProducts.map((product) => (
           <div

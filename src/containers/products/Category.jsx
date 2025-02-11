@@ -15,7 +15,7 @@ function Category() {
       <Link to="/products">
         <div
           className={`p-[5px] pl-4 bg-gradient-to-r from-[#e5e7eb] to-[#f9fafb] ${
-            location.pathname === "/products" ? "border-l-4 border-[#703BF7]" : ""
+            location.pathname === "/products" || location.pathname === "/" ? "border-l-4 border-[#703BF7]" : ""
           }`}
         >
           All
@@ -29,8 +29,9 @@ function Category() {
           Cloths
         </div>
       </Link>
-      <Link>
-        <div className="p-[5px] pl-4 bg-gradient-to-r from-[#e5e7eb] to-[#f9fafb]">
+      <Link to="/furnitureproducts">
+        <div className={`p-[5px] pl-4 bg-gradient-to-r from-[#e5e7eb] to-[#f9fafb] 
+          ${location.pathname==='/furnitureproducts' ? "border-l-4 border-[#703BF7]":""}`}>
           Furniture
         </div>
       </Link>

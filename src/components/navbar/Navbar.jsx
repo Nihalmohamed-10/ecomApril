@@ -136,9 +136,11 @@ function Navbar() {
       </div>
 
       {!isMenuOpen && (
-        <h1 className="text-[16px] font-bold sm:text-[22px] lg:text-5xl">
-          React Shop
-        </h1>
+        <Link to='/'>
+          <h1 className="text-[16px] font-bold sm:text-[22px] lg:text-5xl">
+            React Shop
+          </h1>
+        </Link>
       )}
 
       <div className="hidden xl:flex w-[28%] justify-evenly border p-2 rounded-3xl">

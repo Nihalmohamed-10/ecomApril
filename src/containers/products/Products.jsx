@@ -12,7 +12,7 @@ function Products() {
         
         <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
       </div>
-      <div className="w-full flex flex-col-reverse lg:flex-row lg:gap-3 xl:gap-1">
+      <div className="flex flex-col-reverse lg:flex-row lg:gap-3 xl:gap-1">
         <ProductItems filterIt={(product) =>
           searchTerm? product.title.toLowerCase().includes(searchTerm.toLowerCase()): true
         }/>

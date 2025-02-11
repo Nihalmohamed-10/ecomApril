@@ -2,7 +2,7 @@
 // import axios from "axios";
 // import { Link } from "react-router-dom";
 
-// function ClothProductItems() {
+// function FurnitureProductItems() {
 //   const [products, setProducts] = useState([]);
 
 //   useEffect(() => {
@@ -11,11 +11,11 @@
 //       .then((res) => setProducts(res.data))
 //       .catch((err) => console.error("Error:", err));
 //   }, []);
-//   console.log(products.filter((product) => product.category.name === "Clothes"));
+//   console.log(products.filter((product) => product.category.name === "aaa"));
   
 //   return (
 //     <div className="grid grid-cols-1 gap-6 p-5 w-[350px] mx-auto md:w-10/12 md:grid-cols-2 lg:w-[72%] lg:mx-0 xl:grid-cols-3 xl:w-[80%]">
-//       {products.filter((product) => product.category.name === "Clothes").map((product) => (
+//       {products.filter((product) => product.category.name === "aaa").map((product) => (
 //           <div
 //             key={product.id}
 //             className="flex flex-col gap-5 border border-[#999999] pt-6 pl-6 pr-6 pb-6 rounded-lg"
@@ -60,7 +60,7 @@
 //   );
 // }
 
-// export default ClothProductItems;
+// export default FurnitureProductItems;
 
 // import axios from "axios";
 
