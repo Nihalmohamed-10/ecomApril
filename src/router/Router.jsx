@@ -13,6 +13,7 @@ function RouterComponent() {
     <Router>
       <Navbar />
       <Routes>
+        
         <Route path="/signup" element={<SignUp />} />
         <Route path="/signin" element={<SignIn />} />
         <Route path="/products" element={<Products />} />
