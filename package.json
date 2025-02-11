@@ -10,7 +10,6 @@
     "preview": "vite preview",
     "preload": "npm run build",
     "deploy": "gh-pages -d build"
-    
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",

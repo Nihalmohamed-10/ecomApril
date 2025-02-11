@@ -1,7 +1,7 @@
 import React from 'react'
 import Catogory from '../products/Catogory'
-import ElectronicsProductItems from './ElectronicsProductItems'
 import SearchBar from '../products/SearchBar'
+import ProductItems from '../products/ProductItems'
 
 function ElectronicsProducts() {
   return (
@@ -9,8 +9,9 @@ function ElectronicsProducts() {
       <div className='sm:pl-[10px] md:pl-[20px] lg:pl-0'><SearchBar/></div>
       <div className='flex flex-col-reverse lg:flex-row lg:gap-3 xl:gap-1'>
         
-          <ElectronicsProductItems/>
-        
+          <ProductItems
+          filterIt={(product) => product.category.name==="Electronicskhgvkjh"}
+          />
         <div>
             <Catogory/>
         </div>

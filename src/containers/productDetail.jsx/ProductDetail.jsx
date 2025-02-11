@@ -1,6 +1,7 @@
 import axios from "axios";
 import { Link, useParams } from "react-router-dom";
 import React, { useEffect, useState } from "react";
+import LoadingSpinner from "../products/Loading";
 
 function ProductDetail() {
   const { id } = useParams();
@@ -14,14 +15,15 @@ function ProductDetail() {
         const product = res.data.find((item) => item.id === Number(id));
         if (product) {
           setProductDetails(product);
-          setSelectedImage(product.images?.[0] || "");
+          setSelectedImage(product.images[0] || "");
         }
+        
       })
       .catch((err) => console.error("Error", err));
   }, []);
 
   if (!productDetails) {
-    return <p className="text-center mt-10">loading....</p>;
+    return <LoadingSpinner/>;
   }
 
   return (
