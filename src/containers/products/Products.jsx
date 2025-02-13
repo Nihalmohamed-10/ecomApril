@@ -2,20 +2,27 @@ import React, { useState } from "react";
 import SearchBar from "./SearchBar";
 import ProductItems from "./ProductItems";
 import Category from "./Category";
+import { useParams } from "react-router-dom";
 
 function Products() {
   const [searchTerm, setSearchTerm] = useState("");
+  const { category } = useParams();
 
   return (
     <div className="mt-10 w-full lg:pl-[40px]  xl:pl-[55px] xl:pr-[30px] 2xl:pr-[10px]">
       <div className="sm:pl-[10px] md:pl-[20px] lg:pl-0">
-        
         <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
       </div>
       <div className="flex flex-col-reverse lg:flex-row lg:gap-3 xl:gap-1">
-        <ProductItems filterIt={(product) =>
-          searchTerm? product.title.toLowerCase().includes(searchTerm.toLowerCase()): true
-        }/>
+        <ProductItems
+          filterIt={(product) =>
+            (searchTerm
+              ? product.title.toLowerCase().includes(searchTerm.toLowerCase()): true) &&
+            (!category ||
+              category === "All" ||
+              product.category.name.toLowerCase() === category.toLowerCase())
+          }
+        />
         <div>
           <Category />
         </div>
@@ -26,46 +33,34 @@ function Products() {
 
 export default Products;
 
+// import React, { useState } from "react";
+// import { useParams } from "react-router-dom";
+// import SearchBar from "./SearchBar";
+// import ProductItems from "./ProductItems";
+// import Category from "./Category";
 
-// import React from 'react'
-// import SearchBar from './SearchBar'
-// import ProductItems from './ProductItems'
-// import Catogory from './Catogory'
 // function Products() {
+//   const { category } = useParams();
+//   const [searchTerm, setSearchTerm] = useState("");
 
-  
 //   return (
-    
-//     <div className='mt-10 w-[100%] lg:pl-[40px] lg:w-[1024] xl:pl-[55px] xl:pr-[30px] 2xl:pr-[10px]'>
-//       <div className='sm:pl-[10px] md:pl-[20px] lg:pl-0'><SearchBar/></div>
-//       <div className='flex flex-col-reverse lg:flex-row lg:gap-3 xl:gap-1'>
-        
-//           <ProductItems/>
-        
+//     <div className="mt-10 w-full lg:pl-[40px]  xl:pl-[55px] xl:pr-[30px] 2xl:pr-[10px]">
+//       <div className="sm:pl-[10px] md:pl-[20px] lg:pl-0">
+//         <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+//       </div>
+//       <div className="flex flex-col-reverse lg:flex-row lg:gap-3 xl:gap-1">
+//         <ProductItems
+//           filterIt={(product) =>
+//             (searchTerm ? product.title.toLowerCase().includes(searchTerm.toLowerCase()) : true) &&
+//             (!category || category === "all" || product.category.name.toLowerCase() === category.toLowerCase())
+//           }
+//         />
 //         <div>
-//             <Catogory/>
+//           <Category />
 //         </div>
 //       </div>
 //     </div>
-//   )
+//   );
 // }
 
-// export default Products
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// export default Products;

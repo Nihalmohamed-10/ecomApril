@@ -23,7 +23,19 @@ function SignIn() {
         data
       );
       console.log("Login success:", response.data);
-      navigate("/products");
+      if(response.data.access_token){
+        localStorage.setItem("accessToken",response.data.access_token)
+        console.log("accessTokenn", response.data.access_token);
+        navigate("/products");
+      }else{
+        console.log("access token is missing");
+        
+      }
+      // localStorage.setItem("accessToken", response.data.access_token)
+      // console.log("accessToken", response.data.access_token);
+      
+      
+      
     } catch (error) {
       console.error("Login failed:", error.response?.data || error.message);
     }

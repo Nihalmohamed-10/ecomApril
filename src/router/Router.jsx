@@ -6,22 +6,25 @@ import SignIn from "../containers/signin/SignIn";
 import Products from "../containers/products/Products";
 import Footer from "../containers/footer/Footer";
 import ProductDetail from "../containers/productDetail.jsx/ProductDetail";
-import ClothProducts from  "../containers/cloths/ClothProducts"
-import ElectronicsProducts from "../containers/electronics/ElectronicsProducts";
-import FurnitureProducts from "../containers/furniture/FurnitureProducts";
+import ProtectedRoutes from "../ProtectRoutes";
+// import ClothProducts from "../containers/cloths/ClothProducts";
+// import ElectronicsProducts from "../containers/electronics/ElectronicsProducts";
+// import FurnitureProducts from "../containers/furniture/FurnitureProducts";
 function RouterComponent() {
   return (
     <Router>
       <Navbar />
       <Routes>
-      <Route path="/" element={<Products />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/signin" element={<SignIn />} />
-        <Route path="/products" element={<Products />} />
-        <Route path="/productDetails/:id" element={<ProductDetail />} />
-        <Route path="/clothproducts" element={<ClothProducts />} />
+
+        <Route path="/" element={<ProtectedRoutes />}>
+          <Route path="products/:category?" element={<Products />} />
+          <Route path="productDetails/:id" element={<ProductDetail />} />
+        </Route>
+        {/* <Route path="/clothproducts" element={<ClothProducts />} />
         <Route path="/electonicproducts" element={<ElectronicsProducts />} />
-        <Route path="/furnitureproducts" element={< FurnitureProducts/>} />
+        <Route path="/furnitureproducts" element={<FurnitureProducts />} /> */}
       </Routes>
       <Footer />
     </Router>

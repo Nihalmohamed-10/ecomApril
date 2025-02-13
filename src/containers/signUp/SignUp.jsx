@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { data, Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 function SignUp() {
@@ -12,7 +12,12 @@ function SignUp() {
   });
 
  
-
+  useEffect(()=>{
+    localStorage.removeItem("accessToken");
+    console.log("Access token removed:", localStorage.getItem("accessToken"));
+  },[])
+  
+  
   const navigate = useNavigate();
   const handleChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
@@ -35,7 +40,7 @@ function SignUp() {
         userData
       );
       console.log("Successful:", response.data);
-      navigate("/products");
+      navigate("/signin");
     } catch (error) {
       console.error("Failed:", error.response?.data || error.message);
     }

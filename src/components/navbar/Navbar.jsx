@@ -1,110 +1,3 @@
-// import React, { useState } from "react";
-// import { Link } from "react-router-dom";
-// import LightModeIcon from "@mui/icons-material/LightMode";
-// import LoginIcon from "@mui/icons-material/Login";
-// import PersonAddAltIcon from "@mui/icons-material/PersonAddAlt";
-// import GitHubIcon from "@mui/icons-material/GitHub";
-// import MenuIcon from "@mui/icons-material/Menu";
-// import CloseIcon from "@mui/icons-material/Close";
-
-// function Navbar() {
-//   const [menuOpen, setMenuOpen] = useState(false);
-
-//   return (
-//     <div className="flex justify-between items-center w-full pt-5 pb-5 border-b gap-1 sm:justify-evenly relative">
-//       {/* Hamburger Icon (Always Visible) */}
-//       <div
-//         className="xl:hidden pl-0 absolute top-5 left-4 z-50"
-//         onClick={() => setMenuOpen(!menuOpen)}
-//       >
-//         {menuOpen ? (
-//           <CloseIcon className="cursor-pointer" />
-//         ) : (
-//           <MenuIcon className="cursor-pointer" />
-//         )}
-//       </div>
-
-//       {/* Title (Hidden when menu is open, but space is maintained) */}
-//       <div className="flex-1 flex justify-center">
-//         <h1
-//           className={` text-[16px] font-bold sm:text-[22px] lg:text-5xl transition-opacity duration-300 ${
-//             menuOpen ? "opacity-0" : "opacity-100"
-//           }`}
-//         >
-//           React Shop
-//         </h1>
-//       </div>
-
-//       {/* Desktop Navigation */}
-//       <div className="hidden xl:flex w-[28%] justify-evenly border px-5 py-2 rounded-3xl xl:ml-[70px]">
-//         <Link to="/" className="text-[20px]">
-//           Home
-//         </Link>
-//         <Link to="/products" className="text-[20px]">
-//           Products
-//         </Link>
-//         <Link to="/about" className="text-[20px]">
-//           About
-//         </Link>
-//       </div>
-
-//       {/* Right Side Buttons (Hidden when menu is open) */}
-//       <div
-//         className={`flex justify-end items-center w-[200px] gap-1 sm:w-[250px] sm:justify-evenly xl:w-[334px] transition-opacity duration-300 ${
-//           menuOpen ? "opacity-0 pointer-events-none" : "opacity-100"
-//         }`}
-//       >
-//         <div className="w-[87px] pt-1 pr-2 pl-2 pb-1 border rounded-lg lg:w-[110px]">
-//           <Link to="/signin">
-//             <button className="relative flex items-center gap-2 text-[14px] font-bold lg:text-[18px]">
-//               <LoginIcon className="w-2" /> Login
-//             </button>
-//           </Link>
-//         </div>
-//         <div className="w-[105px] pt-1 pr-2 pl-2 pb-1 border rounded-lg lg:w-[130px] xl:w-[116px]">
-//           <Link to="/signup">
-//             <button className="relative flex items-center gap-2 text-[14px] font-bold lg:text-[18px]">
-//               <PersonAddAltIcon /> Sign Up
-//             </button>
-//           </Link>
-//         </div>
-//       </div>
-
-//       {/* Mobile Menu */}
-//       {menuOpen && (
-//         <div className="absolute top-[100%] left-0 w-full h-screen bg-white shadow-lg flex flex-col items-center py-5 space-y-4 xl:hidden z-40">
-//           <Link
-//             to="/"
-//             className="text-[20px]"
-//             onClick={() => setMenuOpen(false)}
-//           >
-//             Home
-//           </Link>
-//           <Link
-//             to="/products"
-//             className="text-[20px]"
-//             onClick={() => setMenuOpen(false)}
-//           >
-//             Products
-//           </Link>
-//           <Link
-//             to="/about"
-//             className="text-[20px]"
-//             onClick={() => setMenuOpen(false)}
-//           >
-//             About
-//           </Link>
-//           <div className="flex gap-4">
-//             <LightModeIcon className="cursor-pointer" />
-//             <GitHubIcon className="cursor-pointer" />
-//           </div>
-//         </div>
-//       )}
-//     </div>
-//   );
-// }
-
-// export default Navbar;
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import LightModeIcon from "@mui/icons-material/LightMode";
@@ -136,14 +29,14 @@ function Navbar() {
       </div>
 
       {!isMenuOpen && (
-        <Link to='/'>
+        <Link to="/">
           <h1 className="text-[16px] font-bold sm:text-[22px] lg:text-5xl">
             React Shop
           </h1>
         </Link>
       )}
 
-      <div className="hidden xl:flex w-[28%] justify-evenly border p-2 rounded-3xl">
+      {/* <div className="hidden xl:flex xl:ml-[49px] w-[28%] justify-evenly border p-2 rounded-3xl">
         <Link to="/" className="text-[20px]">
           Home
         </Link>
@@ -153,7 +46,7 @@ function Navbar() {
         <Link to="/about" className="text-[20px]">
           About
         </Link>
-      </div>
+      </div> */}
 
       {!isMenuOpen && (
         <div className="flex items-center gap-2 sm:gap-4">
@@ -171,11 +64,13 @@ function Navbar() {
             <PersonAddAltIcon />
             <span className="text-[14px] font-bold">Sign Up</span>
           </Link>
-          <div className="hidden xl:flex border p-2 rounded-lg">
+          {/* <div className="hidden xl:flex border p-2 rounded-lg">
             <LightModeIcon sx={{color: "#703BF7"}}/>
-          </div>
+          </div> */}
           <div className="hidden xl:flex border p-2 rounded-lg">
-            <GitHubIcon />
+            <a href="https://github.com/Nihalmohamed-10">
+              <GitHubIcon />
+            </a>
           </div>
         </div>
       )}
@@ -183,11 +78,13 @@ function Navbar() {
       {isMenuOpen && (
         <div className="pt-30 gap-15 fixed top-0 left-0 w-full h-screen bg-white flex flex-col items-center p-4 shadow-md z-[50] ">
           <div className="absolute top-4 right-4 flex gap-2">
-            <div className="border p-2 rounded-lg">
+            {/* <div className="border p-2 rounded-lg">
               <LightModeIcon />
-            </div>
-            <div className="border p-2 rounded-lg">
-              <GitHubIcon />
+            </div> */}
+            <div className=" border p-2 rounded-lg">
+              <a href="https://github.com/Nihalmohamed-10">
+                <GitHubIcon />
+              </a>
             </div>
           </div>
 
