@@ -10,20 +10,17 @@ function ProductDetail() {
 
   useEffect(() => {
     axios
-      .get("https://api.escuelajs.co/api/v1/products/")
+      .get(`http://localhost:5006/api/products/${id}`)
       .then((res) => {
-        const product = res.data.find((item) => item.id === Number(id));
-        if (product) {
-          setProductDetails(product);
-          setSelectedImage(product.images[0] || "");
-        }
-        
+        const product = res.data;
+        setProductDetails(product);
+        setSelectedImage(product.images?.[0] || "");
       })
       .catch((err) => console.error("Error", err));
-  }, []);
+  }, [id]);
 
   if (!productDetails) {
-    return <LoadingSpinner/>;
+    return <LoadingSpinner />;
   }
 
   return (
@@ -37,7 +34,7 @@ function ProductDetail() {
 
         <div className="flex flex-col-reverse md:gap-10 lg:flex-row lg:gap-10 w-full items-center xl:pl-8">
           <div className="flex gap-4 lg:flex-col lg:gap-5">
-            {productDetails.images.map((image, index) => (
+            {productDetails.images?.map((image, index) => (
               <img
                 key={index}
                 className={`w-[60px] h-[60px] cursor-pointer md:w-[70px] md:h-[70px] rounded-lg ${
@@ -61,10 +58,10 @@ function ProductDetail() {
 
         <div className="flex flex-col gap-6 p-5 lg:w-full">
           <h2 className="font-semibold text-2xl lg:text-4xl">
-            {productDetails.title}
+            {productDetails.name}
           </h2>
           <div className="text-sm font-bold text-gray-700 bg-[#e5e7eb] px-3 py-2 w-fit border rounded-2xl">
-            {productDetails.category?.name}
+            {productDetails.category}
           </div>
           <p className="text-[#999999] text-base font-medium lg:text-xl">
             {productDetails.description}

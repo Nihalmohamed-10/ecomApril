@@ -7,6 +7,9 @@ import Products from "../containers/products/Products";
 import Footer from "../containers/footer/Footer";
 import ProductDetail from "../containers/productDetail.jsx/ProductDetail";
 import ProtectedRoutes from "../ProtectRoutes";
+import Cart from "../containers/cart/Cart";
+import AddProduct from "../containers/addProduct/AddProduct";
+
 // import ClothProducts from "../containers/cloths/ClothProducts";
 // import ElectronicsProducts from "../containers/electronics/ElectronicsProducts";
 // import FurnitureProducts from "../containers/furniture/FurnitureProducts";
@@ -17,7 +20,8 @@ function RouterComponent() {
       <Routes>
         <Route path="/signup" element={<SignUp />} />
         <Route path="/signin" element={<SignIn />} />
-
+        <Route path="/cart" element={<Cart />} />
+        <Route path="addproduct" element={<AddProduct />} />
         <Route path="/" element={<ProtectedRoutes />}>
           <Route path="products/:category?" element={<Products />} />
           <Route path="productDetails/:id" element={<ProductDetail />} />

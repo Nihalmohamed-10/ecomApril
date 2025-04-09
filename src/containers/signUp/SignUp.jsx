@@ -36,7 +36,7 @@ function SignUp() {
 
     try {
       const response = await axios.post(
-        "https://api.escuelajs.co/api/v1/users/",
+        "http://localhost:5006/api/users/register",
         userData
       );
       console.log("Successful:", response.data);
