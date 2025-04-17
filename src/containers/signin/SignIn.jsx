@@ -20,7 +20,14 @@ function SignIn() {
       if (token) {
         localStorage.setItem("token", token);
         console.log(" Token saved:", token);
-        navigate("/products");
+        // navigate("/products");
+        // In SignIn.jsx, after successful login
+        if (response.data.role === "seller") {
+          navigate("/seller/dashboard");
+        } else {
+          navigate("/products");
+        }
+        
       } else {
         console.error("Token is missing from response");
       }
