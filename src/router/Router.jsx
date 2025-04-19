@@ -26,8 +26,8 @@ function RouterComponent() {
           <Route path="/addproduct" element={<AddProduct />} />
           <Route path="products/:category?" element={<Products />} />
           <Route path="productDetails/:id" element={<ProductDetail />} />
-          <Route path="/seller/dashboard" element={<SellerDashboard />} />
-        </Route>
+          <Route path="seller/dashboard" element={<SellerDashboard />} />
+          </Route>
         {/* <Route path="/clothproducts" element={<ClothProducts />} />
         <Route path="/electonicproducts" element={<ElectronicsProducts />} />
         <Route path="/furnitureproducts" element={<FurnitureProducts />} /> */}

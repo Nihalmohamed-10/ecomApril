@@ -1,3 +1,4 @@
+// AddProducts.jsx
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -11,7 +12,7 @@ function AddProduct() {
     price: "",
     category: "",
     stock: "",
-    images: "", // comma-separated URLs
+    images: "",
   });
 
   useEffect(() => {
@@ -29,7 +30,7 @@ function AddProduct() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const token = getToken(); // assuming you store JWT in localStorage
+      const token = getToken();
       const payload = {
         ...formData,
         price: parseFloat(formData.price),
@@ -37,7 +38,7 @@ function AddProduct() {
         images: formData.images.split(",").map((url) => url.trim()),
       };
 
-      const res = await axios.post("http://localhost:5000/api/products", payload, {
+      const res = await axios.post("http://localhost:5006/api/products", payload, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

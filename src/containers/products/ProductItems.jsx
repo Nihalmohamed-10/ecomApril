@@ -79,7 +79,16 @@ function ProductItems({ filterIt }) {
               </Link>
               <div className="flex justify-between items-center">
                 <h2 className="text-xl font-semibold">{product.name}</h2>
-                <span className="text-green-600 font-bold">${product.price}</span>
+                <span className="text-green-600 font-bold">
+                  ${product.price}
+                </span>
+              </div>
+              <div>
+                <h3 className="text-sm text-gray-500 opacity-70">
+                  {product.description.length > 30
+                    ? `${product.description.slice(0, 30)}...`
+                    : product.description}
+                </h3>
               </div>
               <button
                 onClick={() => handleAddToCart(product)}
@@ -104,7 +113,6 @@ export default ProductItems;
 // import sorry from "../../assets/images/sorry.webp";
 // import { CartContext } from "../../context/CartContext";
 
-
 // function ProductItems({ filterIt }) {
 //   const [products, setProducts] = useState([]);
 //   const [loading, setLoading] = useState(true);
@@ -116,7 +124,7 @@ export default ProductItems;
 //     axios
 //       .get("http://localhost:5006/api/products")
 //       .then((res) => {
-//         console.log("Products response:", res.data); 
+//         console.log("Products response:", res.data);
 //         setProducts(res.data);
 //         setLoading(false);
 //       })
