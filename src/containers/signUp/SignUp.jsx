@@ -3,13 +3,14 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 function SignUp() {
+  const [error, setError]= useState("")
   const [user, setUser] = useState({
     firstName: "",
     lastName: "",
     email: "",
     password: "",
     avatar: "https://api.lorem.space/image/face?w=640&h=480",
-    role: "user", // default role
+    role: "user", 
   });
 
   useEffect(() => {
@@ -42,8 +43,12 @@ function SignUp() {
       );
       console.log("Successful:", response.data);
       navigate("/signin");
-    } catch (error) {
-      console.error("Failed:", error.response?.data || error.message);
+    }
+    catch (error) {
+      const message =
+        error.response?.data?.message || "already have an account";
+      setError(message);
+      console.error("Login failed:", message);
     }
   };
 
@@ -52,7 +57,9 @@ function SignUp() {
       <h1 className="text-center text-[24px] font-bold text-[#703BF7]">
         Sign Up
       </h1>
-
+      {error && (
+        <p className="text-red-500 text-center mt-4 font-semibold">{error}</p>
+      )}
       <form onSubmit={handleSubmit}>
         <div className="mt-8 grid grid-cols-1 gap-6 w-full px-4 md:grid-cols-2 lg:gap-15 xl:gap-20">
           <div className="w-full lg:pl-[40px] xl:pl-[80px]">
@@ -122,16 +129,16 @@ function SignUp() {
         <div className="flex flex-col items-center gap-5 mt-8 md:justify-items-center">
           <button
             type="submit"
-            className="w-[300px] p-4 bg-[#703BF7] text-white rounded-lg hover:bg-[#5a2ed3] transition"
+            className="w-[300px] cursor-pointer p-4 bg-[#703BF7] text-white rounded-lg hover:bg-[#5a2ed3] transition"
           >
             Sign Up
           </button>
           <Link to="/signin">
             <button
               type="button"
-              className="w-[300px] p-4 bg-gray-800 text-white rounded-lg hover:bg-gray-700 transition"
+              className="w-[300px] cursor-pointer p-4 bg-gray-800 text-white rounded-lg hover:bg-gray-700 transition"
             >
-              Login
+              Already have an account? Login
             </button>
           </Link>
         </div>

@@ -1,50 +1,58 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
-import { saveUserToLocalStorage } from "../../utlis/auth"; 
+import { saveUserToLocalStorage } from "../../utlis/auth";
 
 function SignIn() {
   const [data, setData] = useState({ email: "", password: "" });
   const navigate = useNavigate();
+  const [error, setError] = useState("");
 
   const handleChange = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
   };
   const handleSignin = async (e) => {
     console.log("button clicked");
-  
+
     e.preventDefault();
-  
+
     try {
       const response = await axios.post(
         "http://localhost:5006/api/users/login",
         data
       );
-  
+
       console.log("Full Backend response:", response);
-  
-      // Destructure directly from response.data, as it contains the user data
-      const { token, _id, name, email, role } = response.data; 
-      
+
+      const { token, _id, name, email, role } = response.data;
+
       if (token && _id && name && email && role) {
         saveUserToLocalStorage({ _id, name, email, role }, token);
-        console.log("Login success. Token:", token, "User:", { _id, name, email, role });
-  
+        console.log("Login success. Token:", token, "User:", {
+          _id,
+          name,
+          email,
+          role,
+        });
+
         if (role === "seller") {
           navigate("/seller/dashboard");
         } else {
           navigate("/products");
         }
       }
-    } catch (error) {
-      console.error("Login failed:", error.response?.data || error.message);
+    } 
+    catch (error) {
+      const message =
+        error.response?.data?.message || "Invalid email or password";
+      setError(message);
+      console.error("Login failed:", message);
     }
   };
-  
 
   // const handleSignin = async (e) => {
   //   console.log("button clicked");
-    
+
   //   e.preventDefault();
 
   //   try {
@@ -52,7 +60,7 @@ function SignIn() {
   //       "http://localhost:5006/api/users/login",
   //       data
   //     );
-      
+
   //     console.log("Backend response:", response);
 
   //     const { token, user } = response.data;
@@ -75,13 +83,16 @@ function SignIn() {
   //   }
   // };
 
-  console.log("SignIn component loaded");
+  // console.log("SignIn component loaded");
 
   return (
     <div className="mt-20 w-[90%] mx-auto border-3 rounded-lg border-gray-100 pt-8 pb-8">
       <h1 className="text-center text-[24px] font-bold text-[#703BF7]">
         Sign In
       </h1>
+      {error && (
+        <p className="text-red-500 text-center mt-4 font-semibold">{error}</p>
+      )}
 
       <form onSubmit={handleSignin}>
         <div className="mt-8 grid grid-cols-1 gap-6 w-full px-4 md:grid-cols-2 lg:gap-15 xl:gap-20">
@@ -111,14 +122,14 @@ function SignIn() {
         <div className="flex flex-col items-center gap-5 mt-8">
           <button
             type="submit"
-            className="w-[300px] p-4 bg-[#703BF7] text-white rounded-lg hover:bg-[#5a2ed3] transition"
+            className="w-[300px] cursor-pointer p-4 bg-[#703BF7] text-white rounded-lg hover:bg-[#5a2ed3] transition"
           >
             Sign In
           </button>
           <Link to="/signup">
             <button
               type="button"
-              className="w-[300px] p-4 bg-gray-800 text-white rounded-lg hover:bg-gray-700 transition"
+              className="w-[300px] cursor-pointer p-4 bg-gray-800 text-white rounded-lg hover:bg-gray-700 transition"
             >
               Don't have an account? Sign Up
             </button>
@@ -130,8 +141,6 @@ function SignIn() {
 }
 
 export default SignIn;
-
-
 
 // import React, { useState } from "react";
 // import axios from "axios";
@@ -162,7 +171,7 @@ export default SignIn;
 //         } else {
 //           navigate("/products");
 //         }
-        
+
 //       } else {
 //         console.error("Token is missing from response");
 //       }
@@ -209,4 +218,3 @@ export default SignIn;
 // }
 
 // export default SignIn;
-

@@ -1,58 +1,106 @@
 import React, { useState } from "react";
+import { useParams } from "react-router-dom";
+import { motion } from "framer-motion";
 import SearchBar from "./SearchBar";
 import ProductItems from "./ProductItems";
 import Category from "./Category";
-import { useParams } from "react-router-dom";
+import SpotlightSlider from "./SpotlightSlider"; // 👈 added this import
 
 function Products() {
   const [searchTerm, setSearchTerm] = useState("");
   const { category } = useParams();
 
   return (
-    <div className="mt-10 w-full lg:pl-[40px]  xl:pl-[55px] xl:pr-[30px] 2xl:pr-[10px]">
-      <div className="sm:pl-[10px] md:pl-[20px] lg:pl-0">
+    <motion.div
+      className="min-h-screen bg-gradient-to-r from-[#a2c2e1] to-[#d0e6f3] py-10"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.6 }}
+    >
+      {/* Search Bar */}
+      <motion.div
+        className="ml-10 mb-8"
+        initial={{ y: -50, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.6 }}
+      >
         <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
-      </div>
-      <div className="flex flex-col-reverse lg:flex-row lg:gap-3 xl:gap-1">
-        <ProductItems
-          filterIt={(product) =>
-            (searchTerm
-              ? product.title.toLowerCase().includes(searchTerm.toLowerCase()): true) &&
-            (!category ||
-              category === "All" ||
-              product.category.name.toLowerCase() === category.toLowerCase())
-          }
-        />
-        <div>
+      </motion.div>
+
+      {/* Spotlight Products Section */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.8 }}
+      >
+        <SpotlightSlider />
+      </motion.div>
+
+      {/* Main Content */}
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mx-10">
+        {/* Categories */}
+        <motion.div
+          className="hidden md:block mb-8"
+          initial={{ x: 50, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          transition={{ duration: 0.8 }}
+        >
           <Category />
-        </div>
+        </motion.div>
+
+        {/* Products */}
+        <motion.div
+          className="md:col-span-3"
+          initial={{ x: -50, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          transition={{ duration: 0.8 }}
+        >
+          <ProductItems
+            filterIt={(product) =>
+              (searchTerm
+                ? product.name?.toLowerCase().includes(searchTerm.toLowerCase())
+                : true) &&
+              (!category ||
+                category.toLowerCase() === "all" ||
+                product.category?.toLowerCase() === category.toLowerCase())
+            }
+          />
+        </motion.div>
       </div>
-    </div>
+    </motion.div>
   );
 }
 
 export default Products;
 
+
 // import React, { useState } from "react";
-// import { useParams } from "react-router-dom";
 // import SearchBar from "./SearchBar";
 // import ProductItems from "./ProductItems";
 // import Category from "./Category";
+// import { useParams } from "react-router-dom";
 
 // function Products() {
-//   const { category } = useParams();
 //   const [searchTerm, setSearchTerm] = useState("");
+//   const { category } = useParams();  
 
 //   return (
-//     <div className="mt-10 w-full lg:pl-[40px]  xl:pl-[55px] xl:pr-[30px] 2xl:pr-[10px]">
-//       <div className="sm:pl-[10px] md:pl-[20px] lg:pl-0">
+//     <div className="mt-10">
+//       <div className="ml-20">
 //         <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
 //       </div>
-//       <div className="flex flex-col-reverse lg:flex-row lg:gap-3 xl:gap-1">
+//       <div className="flex ">
 //         <ProductItems
 //           filterIt={(product) =>
-//             (searchTerm ? product.title.toLowerCase().includes(searchTerm.toLowerCase()) : true) &&
-//             (!category || category === "all" || product.category.name.toLowerCase() === category.toLowerCase())
+//             (searchTerm
+//               ? product.name?.toLowerCase().includes(searchTerm.toLowerCase())
+//               : true) &&
+//             (!category ||
+//               category.toLowerCase() === "all" ||
+//               // product.category?.name?.toLowerCase() === category.toLowerCase()
+//               product.category?.toLowerCase() === category.toLowerCase()
+
+//             )
 //           }
 //         />
 //         <div>

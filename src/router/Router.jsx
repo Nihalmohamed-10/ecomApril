@@ -10,9 +10,13 @@ import ProtectedRoutes from "../ProtectRoutes";
 import Cart from "../containers/cart/Cart";
 import AddProduct from "../containers/products/AddProduct";
 import SellerDashboard from "../pages/SellerDashboard";
-// import ClothProducts from "../containers/cloths/ClothProducts";
-// import ElectronicsProducts from "../containers/electronics/ElectronicsProducts";
-// import FurnitureProducts from "../containers/furniture/FurnitureProducts";
+import Profile from "../components/Profile";
+import UpdateProfile from "../components/UpdateProfile";
+import Logout from "../components/Logout";
+import DeleteAccount from "../components/DeleteAccount";
+import OrderPage from "../pages/orderPage";
+import OrderSuccess from "../pages/OrderSuccess";
+
 function RouterComponent() {
   return (
     <Router>
@@ -23,14 +27,18 @@ function RouterComponent() {
         <Route path="/cart" element={<Cart />} />
 
         <Route path="/" element={<ProtectedRoutes />}>
-          <Route path="/addproduct" element={<AddProduct />} />
+          <Route path="addproduct" element={<AddProduct />} />
           <Route path="products/:category?" element={<Products />} />
           <Route path="productDetails/:id" element={<ProductDetail />} />
           <Route path="seller/dashboard" element={<SellerDashboard />} />
-          </Route>
-        {/* <Route path="/clothproducts" element={<ClothProducts />} />
-        <Route path="/electonicproducts" element={<ElectronicsProducts />} />
-        <Route path="/furnitureproducts" element={<FurnitureProducts />} /> */}
+          <Route path="profile" element={<Profile />} />
+          <Route path="updateprofile" element={<UpdateProfile />} />
+          <Route path="logout" element={<Logout />} />
+          <Route path="deleteaccount" element={<DeleteAccount />} />
+          <Route path="/orders" element={<OrderPage />} />
+          <Route path="/order-success" element={<OrderSuccess />} />
+
+        </Route>
       </Routes>
       <Footer />
     </Router>
