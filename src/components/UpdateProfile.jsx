@@ -59,12 +59,12 @@ function UpdateProfile() {
   };
 
   const handleBack = () => {
-    navigate("/products"); // Go to homepage
+    navigate("/home"); 
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-r from-purple-400 via-pink-400 to-indigo-500 px-4 pt-20">
-      {/* Back Button below the Navbar */}
+    <div className="min-h-screen bg-gradient-to-br from-purple-300 via-pink-300 to-indigo-400 px-4 pt-20">
+     
       <div className="flex justify-end mb-4 pr-4">
         <button
           onClick={handleBack}
@@ -152,6 +152,7 @@ function UpdateProfile() {
 }
 
 export default UpdateProfile;
+
 
 // import React, { useState, useEffect } from "react";
 // import axios from "axios";

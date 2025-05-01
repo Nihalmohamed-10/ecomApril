@@ -29,11 +29,11 @@ const Profile = () => {
   }, []);
 
   const handleBack = () => {
-    navigate("/products");
+    navigate("/home");
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-300 via-pink-300 to-indigo-400 px-4 pt-20">
+    <div className="min-h-screen bg-gradient-to-br from-indigo-300 via-purple-300 to-pink-300 px-4 pt-20">
       
       {/* Back Button Section */}
       <div className="flex justify-end mb-4 pr-4">
@@ -51,7 +51,7 @@ const Profile = () => {
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="bg-white shadow-2xl rounded-3xl p-8 w-full max-w-md"
+          className="bg-white shadow-xl rounded-3xl p-8 w-full max-w-md"
         >
           <h2 className="text-3xl font-extrabold text-center text-indigo-700 mb-8">
             ✨ User Profile ✨
@@ -102,6 +102,7 @@ const Profile = () => {
 };
 
 export default Profile;
+
 
 // import React, { useEffect, useState } from "react";
 // import axios from "axios";

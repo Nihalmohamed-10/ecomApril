@@ -34,7 +34,7 @@ function CartPage() {
   };
 
   return (
-    <div className="w-[90%] md:w-[70%] lg:w-[60%] mx-auto mt-10">
+    <div className="w-[90%] md:w-[70%] lg:w-[60%] mx-auto mt-10 mb-12">
       <div className="flex items-center gap-3 mb-6">
         <FaShoppingCart className="text-3xl text-green-600" />
         <h1 className="text-3xl font-bold text-gray-800">Your Cart</h1>
@@ -44,12 +44,12 @@ function CartPage() {
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          className="text-gray-500 text-center mt-10 text-lg"
+          className="text-gray-500 text-center mt-10 text-lg mb-8"
         >
           Your cart is empty.
         </motion.p>
       ) : (
-        <div className="grid gap-6">
+        <div className="grid gap-6 mb-10">
           {cartItems.map((item) => (
             <motion.div
               key={item._id}
@@ -102,7 +102,7 @@ function CartPage() {
       {/* Price Summary */}
       {cartItems.length > 0 && (
         <>
-          <div className="mt-12 p-6 bg-gray-100 rounded-2xl shadow-inner">
+          <div className="mt-12 p-6 bg-gray-100 rounded-2xl shadow-inner mb-10">
             <h2 className="text-xl font-bold mb-4 flex items-center gap-2 text-green-700">
               <FaMoneyBillWave /> Price Summary
             </h2>
@@ -124,7 +124,7 @@ function CartPage() {
           </div>
 
           {/* Clear Cart button */}
-          <div className="flex justify-center mt-10">
+          <div className="flex justify-center mt-10 mb-6">
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -141,6 +141,7 @@ function CartPage() {
 }
 
 export default CartPage;
+
 
 // import React, { useContext } from "react";
 // import { CartContext } from "../../context/CartContext";

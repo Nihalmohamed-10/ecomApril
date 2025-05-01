@@ -19,7 +19,7 @@ const Logout = () => {
   };
 
   const handleBack = () => {
-    navigate("/products");
+    navigate("/home");
   };
 
   return (

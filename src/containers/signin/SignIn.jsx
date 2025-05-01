@@ -38,7 +38,7 @@ function SignIn() {
         if (role === "seller") {
           navigate("/seller/dashboard");
         } else {
-          navigate("/products");
+          navigate("/home");
         }
       }
     } 

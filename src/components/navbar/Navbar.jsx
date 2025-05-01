@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
@@ -9,11 +9,31 @@ import CloseIcon from "@mui/icons-material/Close";
 function Navbar() {
   const [showProfileMenu, setShowProfileMenu] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const profileMenuRef = useRef(null);
 
+  // Toggle Profile Menu
   const toggleProfileMenu = () => {
     setShowProfileMenu(!showProfileMenu);
   };
 
+  // Handle clicks outside of profile menu to close it
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (profileMenuRef.current && !profileMenuRef.current.contains(event.target)) {
+        setShowProfileMenu(false);
+      }
+    };
+
+    // Add event listener for clicks outside
+    document.addEventListener("mousedown", handleClickOutside);
+
+    // Cleanup the event listener
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+  // Handle Mobile Menu Toggle
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!mobileMenuOpen);
   };
@@ -23,7 +43,7 @@ function Navbar() {
       <div className="max-w-7xl mx-auto flex justify-between items-center text-white">
         {/* Logo */}
         <Link
-          to="/"
+          to="/home"
           className="font-bold text-2xl text-white hover:text-indigo-200 transition-all duration-300"
         >
           ShopEase
@@ -72,28 +92,45 @@ function Navbar() {
 
             {/* Profile Dropdown */}
             {showProfileMenu && (
-              <div className="absolute right-0 mt-2 w-48 bg-white text-black rounded-lg shadow-md p-4 z-50">
+              <div
+                ref={profileMenuRef}
+                className="absolute right-0 mt-2 w-48 bg-white text-black rounded-lg shadow-md p-4 z-50"
+              >
                 <ul>
                   <li>
-                    <Link to="/profile" className="block py-2 px-4 hover:bg-indigo-100 rounded-lg">
+                    <Link
+                      to="/profile"
+                      onClick={() => setShowProfileMenu(false)}
+                      className="block py-2 px-4 hover:bg-indigo-100 rounded-lg"
+                    >
                       View Profile
                     </Link>
                   </li>
                   <li>
-                    <Link to="/updateprofile" className="block py-2 px-4 hover:bg-indigo-100 rounded-lg">
+                    <Link
+                      to="/updateprofile"
+                      onClick={() => setShowProfileMenu(false)}
+                      className="block py-2 px-4 hover:bg-indigo-100 rounded-lg"
+                    >
                       Update Profile
                     </Link>
                   </li>
                   <li>
                     <Link to="/deleteaccount">
-                      <button className="block py-2 px-4 hover:bg-indigo-100 rounded-lg text-red-600">
+                      <button
+                        onClick={() => setShowProfileMenu(false)}
+                        className="block py-2 px-4 hover:bg-indigo-100 rounded-lg text-red-600"
+                      >
                         Delete Account
                       </button>
                     </Link>
                   </li>
                   <li>
                     <Link to="/logout">
-                      <button className="block py-2 px-4 hover:bg-indigo-100 rounded-lg text-blue-600">
+                      <button
+                        onClick={() => setShowProfileMenu(false)}
+                        className="block py-2 px-4 hover:bg-indigo-100 rounded-lg text-blue-600"
+                      >
                         Logout
                       </button>
                     </Link>

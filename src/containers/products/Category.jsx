@@ -4,12 +4,13 @@ import PlaylistAddIcon from "@mui/icons-material/PlaylistAdd";
 import { motion } from "framer-motion";
 
 function Category() {
-  const { category } = useParams();
+  const { category } = useParams(); // Get the category from the URL params
   const navigate = useNavigate();
+
   const categories = [
     "All",
     "Clothes",
-    "Furniture",
+    "furniture",
     "Electronics",
     "Shoes",
     "Miscellaneous",
@@ -32,7 +33,8 @@ function Category() {
       {categories.map((cat) => {
         const categoryName = cat.toLowerCase();
         const isSelected =
-          category?.toLowerCase() === categoryName || (!category && categoryName === "all");
+          (category?.toLowerCase() === categoryName) ||
+          (!category && categoryName === "all"); // Highlight "All" when no category in URL
 
         return (
           <motion.div
@@ -46,7 +48,8 @@ function Category() {
               }
             `}
             onClick={() =>
-              navigate(`/products/${categoryName === "all" ? "" : categoryName}`)
+              navigate(`/home/${categoryName === "all" ? "" : categoryName}`)
+
             }
           >
             <motion.div
@@ -70,6 +73,8 @@ function Category() {
 }
 
 export default Category;
+
+
 
 // import React from "react";
 // import { useNavigate, useParams } from "react-router-dom";

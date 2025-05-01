@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import SearchBar from "./SearchBar";
 import ProductItems from "./ProductItems";
 import Category from "./Category";
-import SpotlightSlider from "./SpotlightSlider"; // 👈 added this import
+import SpotlightSlider from "./SpotlightSlider";
 
 function Products() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -37,10 +37,10 @@ function Products() {
       </motion.div>
 
       {/* Main Content */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mx-10">
-        {/* Categories */}
+      <div className="mt-10 grid grid-cols-1 md:grid-cols-4 gap-6 mx-10">
+        {/* Categories (Visible on Mobile First) */}
         <motion.div
-          className="hidden md:block mb-8"
+          className="md:hidden mb-8"
           initial={{ x: 50, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           transition={{ duration: 0.8 }}
@@ -66,12 +66,23 @@ function Products() {
             }
           />
         </motion.div>
+
+        {/* Categories (Visible on Larger Screens) */}
+        <motion.div
+          className="hidden md:block mb-8"
+          initial={{ x: 50, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          transition={{ duration: 0.8 }}
+        >
+          <Category />
+        </motion.div>
       </div>
     </motion.div>
   );
 }
 
 export default Products;
+
 
 
 // import React, { useState } from "react";

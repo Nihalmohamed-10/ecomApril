@@ -1,18 +1,19 @@
 import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import LoadingSpinner from "./Loading";
 import sorry from "../../assets/images/sorry.webp";
 import { CartContext } from "../../context/CartContext";
 import { getUserRole } from "../../utlis/auth";
 import { motion } from "framer-motion";
 
-function ProductItems({ filterIt }) {
+function ProductItems() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const { addToCart } = useContext(CartContext);
   const navigate = useNavigate();
   const userRole = getUserRole();
+  const { category } = useParams(); 
 
   useEffect(() => {
     axios
@@ -27,7 +28,10 @@ function ProductItems({ filterIt }) {
       });
   }, []);
 
-  const filteredProducts = products.filter(filterIt);
+  const filteredProducts = products.filter((product) => {
+    if (!category || category.toLowerCase() === "all") return true;
+    return product.category?.toLowerCase() === category.toLowerCase();
+  });
 
   const handleAddToCart = (product) => {
     addToCart(product);
@@ -103,6 +107,7 @@ function ProductItems({ filterIt }) {
 }
 
 export default ProductItems;
+
 
 
 // import React, { useEffect, useState, useContext } from "react";
