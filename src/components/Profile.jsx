@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { motion } from "framer-motion";
-import { FaUserAlt, FaEnvelope, FaUserShield } from "react-icons/fa"; // Icons
-import { ImSpinner2 } from "react-icons/im"; // Loading Spinner
+import { FaUserAlt, FaEnvelope, FaUserShield } from "react-icons/fa"; 
+import { ImSpinner2 } from "react-icons/im"; 
 
 const Profile = () => {
   const [user, setUser] = useState(null);
@@ -35,7 +35,6 @@ const Profile = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-indigo-300 via-purple-300 to-pink-300 px-4 pt-20">
       
-      {/* Back Button Section */}
       <div className="flex justify-end mb-4 pr-4">
         <button
           onClick={handleBack}
@@ -45,7 +44,6 @@ const Profile = () => {
         </button>
       </div>
 
-      {/* Profile Card Section */}
       <div className="flex justify-center items-center">
         <motion.div
           initial={{ opacity: 0, y: -50 }}
@@ -54,7 +52,7 @@ const Profile = () => {
           className="bg-white shadow-xl rounded-3xl p-8 w-full max-w-md"
         >
           <h2 className="text-3xl font-extrabold text-center text-indigo-700 mb-8">
-            ✨ User Profile ✨
+             User Profile 
           </h2>
 
           {loading ? (

@@ -11,12 +11,11 @@ function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const profileMenuRef = useRef(null);
 
-  // Toggle Profile Menu
+
   const toggleProfileMenu = () => {
     setShowProfileMenu(!showProfileMenu);
   };
 
-  // Handle clicks outside of profile menu to close it
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (profileMenuRef.current && !profileMenuRef.current.contains(event.target)) {
@@ -24,16 +23,13 @@ function Navbar() {
       }
     };
 
-    // Add event listener for clicks outside
     document.addEventListener("mousedown", handleClickOutside);
 
-    // Cleanup the event listener
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
 
-  // Handle Mobile Menu Toggle
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!mobileMenuOpen);
   };
@@ -41,7 +37,6 @@ function Navbar() {
   return (
     <div className="bg-gradient-to-r from-indigo-500 to-purple-600 p-4 shadow-lg">
       <div className="max-w-7xl mx-auto flex justify-between items-center text-white">
-        {/* Logo */}
         <Link
           to="/home"
           className="font-bold text-2xl text-white hover:text-indigo-200 transition-all duration-300"
@@ -49,7 +44,6 @@ function Navbar() {
           ShopEase
         </Link>
 
-        {/* Desktop Menu */}
         <div className="hidden md:flex space-x-6">
           {["Home", "Products", "About", "Contact"].map((item) => (
             <motion.div
@@ -64,9 +58,7 @@ function Navbar() {
           ))}
         </div>
 
-        {/* Right Side: Cart + Profile */}
         <div className="flex items-center space-x-6">
-          {/* Cart Icon */}
           <Link to="/cart" className="relative">
             <motion.div
               whileHover={{ scale: 1.1 }}
@@ -74,13 +66,11 @@ function Navbar() {
             >
               <ShoppingCartIcon />
             </motion.div>
-            {/* Cart Badge */}
             <div className="absolute -top-2 -right-2 w-5 h-5 bg-red-600 rounded-full text-xs text-white flex items-center justify-center">
               3
             </div>
           </Link>
 
-          {/* Profile Icon */}
           <div className="relative">
             <motion.div
               whileHover={{ scale: 1.1 }}
@@ -90,7 +80,6 @@ function Navbar() {
               <PersonIcon />
             </motion.div>
 
-            {/* Profile Dropdown */}
             {showProfileMenu && (
               <div
                 ref={profileMenuRef}
@@ -140,7 +129,6 @@ function Navbar() {
             )}
           </div>
 
-          {/* Hamburger Icon */}
           <div className="md:hidden flex items-center">
             <button onClick={toggleMobileMenu} className="text-white focus:outline-none">
               {mobileMenuOpen ? <CloseIcon /> : <MenuIcon />}
@@ -149,14 +137,13 @@ function Navbar() {
         </div>
       </div>
 
-      {/* Mobile Menu */}
       {mobileMenuOpen && (
         <div className="md:hidden mt-4 bg-indigo-400 rounded-lg p-4 space-y-4 shadow-lg">
           {["Home", "Products", "About", "Contact"].map((item) => (
             <Link
               key={item}
               to={`/${item.toLowerCase()}`}
-              onClick={() => setMobileMenuOpen(false)} // Close after click
+              onClick={() => setMobileMenuOpen(false)} 
               className="block text-white text-lg font-medium hover:text-indigo-200"
             >
               {item}

@@ -6,7 +6,7 @@ import { CartContext } from "../../context/CartContext";
 
 function ProductDetail() {
   const { id } = useParams();
-  const navigate = useNavigate(); // ✅ added navigate
+  const navigate = useNavigate(); 
   const [productDetails, setProductDetails] = useState(null);
   const [selectedImage, setSelectedImage] = useState(null);
   const { addToCart } = useContext(CartContext);
@@ -30,16 +30,13 @@ function ProductDetail() {
     <div className="mt-10 w-[92%] mx-auto animate-fade-in lg:w-[80%] mb-12">
       <div className="relative border rounded-3xl bg-gradient-to-r from-[#F4F4F5] via-[#EFEFFE] to-[#F4F4F5] shadow-lg flex flex-col-reverse lg:flex-row p-5 lg:p-10 gap-10 transition-all">
         
-        {/* Back Button */}
         <Link to="/home" className="absolute top-3 right-3">
           <button className="bg-white border border-gray-400 text-gray-700 rounded-full px-4 py-2 hover:bg-gray-200 hover:scale-105 transition">
             ← Back
           </button>
         </Link>
 
-        {/* Left Side */}
         <div className="flex flex-col gap-5 lg:w-1/2">
-          {/* Thumbnails */}
           <div className="flex gap-4 overflow-x-auto">
             {productDetails.images?.map((image, index) => (
               <img
@@ -56,18 +53,14 @@ function ProductDetail() {
             ))}
           </div>
 
-          {/* Product Info */}
           <h2 className="text-3xl font-bold text-gray-800">{productDetails.name}</h2>
           
-          {/* Category Badge */}
           <div className="bg-[#e0d4fc] text-[#703BF7] font-semibold px-4 py-1 rounded-full w-fit text-sm tracking-wide shadow-sm">
             {productDetails.category}
           </div>
 
-          {/* Description */}
           <p className="text-gray-600 text-base leading-relaxed">{productDetails.description}</p>
 
-          {/* Price and Add to Cart */}
           <div className="flex justify-between items-center mt-5">
             <div className="group">
               <p className="text-sm text-gray-500">Price</p>
@@ -78,8 +71,8 @@ function ProductDetail() {
 
             <button 
               onClick={() => {
-                addToCart(productDetails); // ✅ add to context/backend
-                navigate("/cart"); // ✅ navigate to cart page
+                addToCart(productDetails); 
+                navigate("/cart"); 
               }}
               className="bg-[#703BF7] hover:bg-[#5c2dd5] transition-all text-white px-6 py-3 rounded-xl shadow-md hover:scale-105"
             >
@@ -88,7 +81,6 @@ function ProductDetail() {
           </div>
         </div>
 
-        {/* Right Side (Main Image) */}
         <div className="flex justify-center items-center lg:w-1/2">
           <img
             src={selectedImage}

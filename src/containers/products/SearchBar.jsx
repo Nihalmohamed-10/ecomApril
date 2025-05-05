@@ -16,22 +16,22 @@ const SearchBar = ({ searchTerm, setSearchTerm }) => {
           "@media (min-width: 1024px)": { width: "30%" },
           "& .MuiInputBase-root": {
             borderRadius: "25px",
-            backgroundColor: "#F7F7F7", // Light background color
+            backgroundColor: "#F7F7F7", 
             transition: "all 0.3s ease",
           },
           "& .MuiInputBase-input": {
             padding: "12px 16px",
             fontSize: "16px",
-            color: "#333", // Dark text color for contrast
+            color: "#333", 
           },
           "& .MuiOutlinedInput-notchedOutline": {
-            borderColor: "#D1D5DB", // Light border color
+            borderColor: "#D1D5DB", 
           },
           "&:hover .MuiOutlinedInput-notchedOutline": {
-            borderColor: "#703BF7", // Border color on hover
+            borderColor: "#703BF7", 
           },
           "&:focus .MuiOutlinedInput-notchedOutline": {
-            borderColor: "#703BF7", // Border color when focused
+            borderColor: "#703BF7", 
           },
         }}
         InputProps={{

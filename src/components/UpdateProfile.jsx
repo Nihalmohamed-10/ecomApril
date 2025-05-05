@@ -44,7 +44,7 @@ function UpdateProfile() {
     setSuccessMsg("");
 
     try {
-      const res = await axios.put("http://localhost:5006/api/users/update", formData, {
+      const res = await axios.put("http://localhost:5006/api/users/", formData, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
@@ -74,7 +74,7 @@ function UpdateProfile() {
         </button>
       </div>
 
-      {/* Form Section */}
+      {/* Form */}
       <div className="flex justify-center">
         <motion.div
           initial={{ opacity: 0, y: -50 }}
@@ -88,7 +88,7 @@ function UpdateProfile() {
           {errorMsg && <div className="text-red-600 mb-4 text-center">{errorMsg}</div>}
 
           <form onSubmit={handleUpdate} className="space-y-6">
-            {/* Name Field */}
+            {/**/}
             <div className="flex items-center gap-3 bg-gray-100 p-4 rounded-xl shadow-md">
               <FaUserAlt className="text-indigo-600 text-xl" />
               <div className="flex flex-col w-full">
@@ -104,7 +104,7 @@ function UpdateProfile() {
               </div>
             </div>
 
-            {/* Email Field */}
+      
             <div className="flex items-center gap-3 bg-gray-100 p-4 rounded-xl shadow-md">
               <FaEnvelope className="text-indigo-600 text-xl" />
               <div className="flex flex-col w-full">
@@ -120,7 +120,7 @@ function UpdateProfile() {
               </div>
             </div>
 
-            {/* Password Field */}
+           
             <div className="flex items-center gap-3 bg-gray-100 p-4 rounded-xl shadow-md">
               <FaKey className="text-indigo-600 text-xl" />
               <div className="flex flex-col w-full">
@@ -136,7 +136,7 @@ function UpdateProfile() {
               </div>
             </div>
 
-            {/* Submit Button */}
+       
             <button
               type="submit"
               disabled={loading}

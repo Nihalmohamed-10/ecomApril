@@ -17,7 +17,6 @@ function Products() {
       animate={{ opacity: 1 }}
       transition={{ duration: 0.6 }}
     >
-      {/* Search Bar */}
       <motion.div
         className="ml-10 mb-8"
         initial={{ y: -50, opacity: 0 }}
@@ -27,7 +26,6 @@ function Products() {
         <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
       </motion.div>
 
-      {/* Spotlight Products Section */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -36,9 +34,7 @@ function Products() {
         <SpotlightSlider />
       </motion.div>
 
-      {/* Main Content */}
       <div className="mt-10 grid grid-cols-1 md:grid-cols-4 gap-6 mx-10">
-        {/* Categories (Visible on Mobile First) */}
         <motion.div
           className="md:hidden mb-8"
           initial={{ x: 50, opacity: 0 }}
@@ -48,7 +44,6 @@ function Products() {
           <Category />
         </motion.div>
 
-        {/* Products */}
         <motion.div
           className="md:col-span-3"
           initial={{ x: -50, opacity: 0 }}
@@ -67,7 +62,6 @@ function Products() {
           />
         </motion.div>
 
-        {/* Categories (Visible on Larger Screens) */}
         <motion.div
           className="hidden md:block mb-8"
           initial={{ x: 50, opacity: 0 }}

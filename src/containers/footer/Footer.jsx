@@ -4,16 +4,14 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-900 text-gray-300 py-8 px-4">
+    <footer className="mt-auto bg-gray-900 text-gray-300 py-8 px-4">
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center">
         
-        {/* Left Side */}
         <div className="mb-6 md:mb-0 text-center md:text-left">
           <h1 className="text-xl font-bold text-white">Nihal's Store</h1>
-          <p className="text-gray-400 mt-2">Building quality experiences with ❤️ and passion.</p>
+          <p className="text-gray-400 mt-2">Building quality experiences with passion.</p>
         </div>
 
-        {/* Middle Links */}
         <div className="flex space-x-6 mb-6 md:mb-0">
           <a href="#" className="hover:text-indigo-400 transition">About</a>
           <a href="#" className="hover:text-indigo-400 transition">Privacy</a>
@@ -21,7 +19,6 @@ const Footer = () => {
           <a href="#" className="hover:text-indigo-400 transition">Contact</a>
         </div>
 
-        {/* Right Side Icons */}
         <div className="flex space-x-6">
           <a href="https://github.com/Nihalmohamed-10" target="_blank" rel="noopener noreferrer" className="hover:text-white">
             <GitHub />
@@ -36,7 +33,6 @@ const Footer = () => {
 
       </div>
 
-      {/* Bottom Line */}
       <div className="border-t border-gray-700 mt-8 pt-4 text-center text-gray-500 text-sm">
         <p>
           Made with <FavoriteIcon fontSize="small" className="text-pink-500" /> by{" "}

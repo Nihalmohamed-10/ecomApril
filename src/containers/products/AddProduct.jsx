@@ -22,7 +22,7 @@ function AddProduct() {
   useEffect(() => {
     const role = getUserRole();
     if (role !== "seller") {
-      navigate("/products");
+      navigate("/home");
     }
 
     if (productId) {
@@ -88,7 +88,7 @@ function AddProduct() {
         });
       }
 
-      navigate("/products");
+      navigate("/home");
     } catch (err) {
       console.error(
         "Error submitting form:",

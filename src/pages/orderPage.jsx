@@ -22,6 +22,16 @@ const OrderPage = () => {
     setShippingAddress({ ...shippingAddress, [name]: value });
   };
 
+  const loadRazorpayScript = () => {
+    return new Promise((resolve) => {
+      const script = document.createElement("script");
+      script.src = "https://checkout.razorpay.com/v1/checkout.js";
+      script.onload = () => resolve(true);
+      script.onerror = () => resolve(false);
+      document.body.appendChild(script);
+    });
+  };
+
   const handleSubmitOrder = async () => {
     if (
       !shippingAddress.address ||
@@ -53,6 +63,13 @@ const OrderPage = () => {
     };
 
     try {
+      const isRazorpayLoaded = await loadRazorpayScript();
+      if (!isRazorpayLoaded) {
+        alert("Failed to load Razorpay SDK. Please try again.");
+        setIsLoading(false);
+        return;
+      }
+
       const response = await axios.post(
         "http://localhost:5006/api/orders/create-order",
         orderData,
@@ -66,29 +83,27 @@ const OrderPage = () => {
 
       const { razorpayOrder, key_id, order } = response.data;
 
-      // Save order to localStorage
       localStorage.setItem("latestOrder", JSON.stringify(order));
 
-      // Razorpay options
       const options = {
         key: key_id,
         amount: razorpayOrder.amount,
         currency: "INR",
         name: "Your Store Name",
         description: "Purchase Description",
-        image: "/logo.png", // optional
+        image: "/logo.png",
         order_id: razorpayOrder.id,
         handler: async function (response) {
-          // This function is triggered after payment is successful
           try {
-            // Update payment status in the backend
             await axios.post(
               "http://localhost:5006/api/orders/update-payment-status",
               {
                 razorpay_payment_id: response.razorpay_payment_id,
                 razorpay_order_id: response.razorpay_order_id,
                 razorpay_signature: response.razorpay_signature,
-                order_id: order._id,
+                // order_id: order._id,
+                orderId: order._id,
+
               },
               {
                 headers: {
@@ -101,14 +116,19 @@ const OrderPage = () => {
             alert("Payment Successful");
             navigate("/order-success");
           } catch (error) {
-            console.error("Error updating payment status:", error.response?.data || error.message);
-            alert("Payment was successful, but there was an error updating the order status.");
+            console.error(
+              "Error updating payment status:",
+              error.response?.data || error.message
+            );
+            alert(
+              "Payment was successful, but there was an error updating the order status."
+            );
           }
         },
         prefill: {
-          name: "", // Optional user name
-          email: "", // Optional user email
-          contact: "", // Optional contact number
+          name: "",
+          email: "",
+          contact: "",
         },
         notes: {
           address: shippingAddress.address,
@@ -118,11 +138,13 @@ const OrderPage = () => {
         },
       };
 
-      // Open Razorpay payment popup
       const rzp1 = new window.Razorpay(options);
       rzp1.open();
     } catch (error) {
-      console.error("Error placing order:", error.response?.data || error.message);
+      console.error(
+        "Error placing order:",
+        error.response?.data || error.message
+      );
       alert("There was an error placing your order.");
     } finally {
       setIsLoading(false);
@@ -143,9 +165,7 @@ const OrderPage = () => {
             alt={singleProduct.title}
             className="w-48 h-48 object-cover mx-auto mt-4"
           />
-          <p className="text-lg text-gray-700 mt-2">
-            ₹{singleProduct.price}
-          </p>
+          <p className="text-lg text-gray-700 mt-2">₹{singleProduct.price}</p>
         </div>
       )}
 
@@ -220,6 +240,7 @@ const OrderPage = () => {
 
 export default OrderPage;
 
+
 // import React, { useState } from "react";
 // import { useNavigate, useLocation } from "react-router-dom";
 // import axios from "axios";
@@ -286,13 +307,63 @@ export default OrderPage;
 //         }
 //       );
 
-//       if (response.data) {
-//         localStorage.setItem(
-//           "latestOrder",
-//           JSON.stringify(response.data.order)
-//         );
-//         navigate("/order-success");
-//       }
+//       const { razorpayOrder, key_id, order } = response.data;
+
+//       // Save order to localStorage
+//       localStorage.setItem("latestOrder", JSON.stringify(order));
+
+//       // Razorpay options
+//       const options = {
+//         key: key_id,
+//         amount: razorpayOrder.amount,
+//         currency: "INR",
+//         name: "Your Store Name",
+//         description: "Purchase Description",
+//         image: "/logo.png", // optional
+//         order_id: razorpayOrder.id,
+//         handler: async function (response) {
+//           // This function is triggered after payment is successful
+//           try {
+//             // Update payment status in the backend
+//             await axios.post(
+//               "http://localhost:5006/api/orders/update-payment-status",
+//               {
+//                 razorpay_payment_id: response.razorpay_payment_id,
+//                 razorpay_order_id: response.razorpay_order_id,
+//                 razorpay_signature: response.razorpay_signature,
+//                 order_id: order._id,
+//               },
+//               {
+//                 headers: {
+//                   Authorization: `Bearer ${token}`,
+//                   "Content-Type": "application/json",
+//                 },
+//               }
+//             );
+
+//             alert("Payment Successful");
+//             navigate("/order-success");
+//           } catch (error) {
+//             console.error("Error updating payment status:", error.response?.data || error.message);
+//             alert("Payment was successful, but there was an error updating the order status.");
+//           }
+//         },
+//         prefill: {
+//           name: "", // Optional user name
+//           email: "", // Optional user email
+//           contact: "", // Optional contact number
+//         },
+//         notes: {
+//           address: shippingAddress.address,
+//         },
+//         theme: {
+//           color: "#3399cc",
+//         },
+//       };
+
+//       // Open Razorpay payment popup
+//       const rzp1 = new window.Razorpay(options);
+//       rzp1.open();
 //     } catch (error) {
 //       console.error("Error placing order:", error.response?.data || error.message);
 //       alert("There was an error placing your order.");
@@ -391,5 +462,3 @@ export default OrderPage;
 // };
 
 // export default OrderPage;
-
-

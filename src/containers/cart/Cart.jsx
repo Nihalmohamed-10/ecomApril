@@ -12,10 +12,8 @@ import {
 function CartPage() {
   const { cartItems, removeFromCart, handleClearCart } = useContext(CartContext);
 
-  // Use navigate hook
   const navigate = useNavigate();
 
-  // Calculate subtotal using useMemo for performance
   const subtotal = useMemo(() => {
     return cartItems.reduce(
       (acc, item) => acc + item.price * (item.quantity || 1),
@@ -27,9 +25,7 @@ function CartPage() {
   const tax = subtotal * taxRate;
   const total = subtotal + tax;
 
-  // Handle the Shop Now button click
   const handleShopNow = (item) => {
-    // Navigate to the OrderPage with the product details
     navigate("/orders", { state: { singleProduct: item } });
   };
 
@@ -99,7 +95,7 @@ function CartPage() {
         </div>
       )}
 
-      {/* Price Summary */}
+  
       {cartItems.length > 0 && (
         <>
           <div className="mt-12 p-6 bg-gray-100 rounded-2xl shadow-inner mb-10">
@@ -123,7 +119,7 @@ function CartPage() {
             </div>
           </div>
 
-          {/* Clear Cart button */}
+        
           <div className="flex justify-center mt-10 mb-6">
             <motion.button
               whileHover={{ scale: 1.05 }}

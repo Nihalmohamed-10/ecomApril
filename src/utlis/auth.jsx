@@ -15,12 +15,12 @@ export const getUserRole = () => {
   return user?.role;
 };
 
-// Get user info (if needed anywhere)
+// Get user info 
 export const getUserInfo = () => {
   return JSON.parse(localStorage.getItem("user"));
 };
 
-// Clear user info (for logout)
+// logout
 export const clearUserFromLocalStorage = () => {
   localStorage.removeItem("user");
   localStorage.removeItem("token");

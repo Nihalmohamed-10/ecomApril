@@ -12,7 +12,7 @@ const DeleteAccount = () => {
   const handleDelete = async () => {
     try {
       const token = localStorage.getItem("token");
-      await axios.delete("http://localhost:5006/api/users/delete", {
+      await axios.delete("http://localhost:5006/api/users/", {
         headers: { Authorization: `Bearer ${token}` },
       });
       localStorage.removeItem("token");
@@ -33,7 +33,6 @@ const DeleteAccount = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-red-100 via-pink-100 to-red-200 px-4 pt-20">
 
-      {/* Back Button */}
       <div className="flex justify-end pr-4 mb-6">
         <button
           onClick={handleBack}
@@ -43,7 +42,6 @@ const DeleteAccount = () => {
         </button>
       </div>
 
-      {/* Delete Account Box */}
       <div className="flex justify-center items-center">
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}

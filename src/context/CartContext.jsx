@@ -1,12 +1,9 @@
-// src/context/CartContext.jsx
 
 import React, { createContext, useState, useEffect, useContext } from "react";
 import axios from "axios";
 
-// Create CartContext
 export const CartContext = createContext();
 
-// Custom hook to access CartContext
 export const useCartContext = () => {
   return useContext(CartContext);
 };
@@ -27,7 +24,7 @@ export const CartProvider = ({ children }) => {
     }
   };
 
-  // Fetch cart from backend on mount
+  // Fetch cart from backend 
   useEffect(() => {
     const fetchCart = async () => {
       const token = localStorage.getItem("token");
@@ -143,7 +140,7 @@ export const CartProvider = ({ children }) => {
       });
 
       setCartItems([]);
-      setTotalAmount(0); // Reset total amount when clearing cart
+      setTotalAmount(0); 
     } catch (error) {
       console.error("Failed to clear cart:", error);
     }

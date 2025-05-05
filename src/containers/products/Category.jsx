@@ -4,7 +4,7 @@ import PlaylistAddIcon from "@mui/icons-material/PlaylistAdd";
 import { motion } from "framer-motion";
 
 function Category() {
-  const { category } = useParams(); // Get the category from the URL params
+  const { category } = useParams(); 
   const navigate = useNavigate();
 
   const categories = [
